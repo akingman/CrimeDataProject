@@ -5,7 +5,7 @@ require(dplyr)
 
 data= read.csv("train.csv")
 
-#take out hour, month and year
+#take out hour, month, and year
 data = data %>% 
   mutate(Time = ymd_hms(Dates)) %>%
   mutate(hour = as.factor(hour(Time)), 
