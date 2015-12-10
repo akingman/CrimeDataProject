@@ -21,31 +21,50 @@ data = data %>%
   filter(year >2005)
 data$year = as.factor(data$year)
 
+#Only include LARCENY/THEFT, NON-CRIMINAL, DRUG/NARCOTIC
+#These are the top three excluding OTHER. 
+#mark everything else as OTHER
+levels(data$Category) = c(levels(data$Category), "OTHER")
+data$Category[!(data$Category %in% 
+    c("LARCENY/THEFT", "NON-CRIMINAL", "ASSAULT"))] = "OTHER"
+data$Category = droplevels(data$Category)
 
-#small tests
+
+#train and test
 set.seed(100)
-trainobs = sample(seq(1, nrow(data)), 1000)
-set.seed(107)
-testobs = sample(seq(1, nrow(data)), 100)
+trainind = sample(seq(1:nrow(data)), 50000)
 
+train= data[trainind,]
+test = data[-trainind,]
 
-#large test
-#set.seed(105)
-#trainind = sample(seq(1,nrow(data)), floor(nrow(data)*(2/3)))
-
-train= data[trainobs,]
-test = data[testobs,]
+#maketree
+before = Sys.time()
 t = ctree(Category~., data = train)
+totalTime = Sys.time() - before
+totalTime
 
-save.image()
 
 plot(t)
 
-
+#predict
 pred = predict(t, test)
 tab = table(pred, test$Category)
 error = (nrow(test) - sum(diag(tab)))/nrow(test)
 error
+
+
+#calculate logloss
+probpred = predict(t, test, type="prob")
+N = nrow(test)
+probs = rep(1,N)
+for (i in seq(1,N)){
+  class = test$Category[i]
+  prob = probpred[i, class]
+  prob = max(min(prob,1-10^(-15)), 10^(-15))
+  probs[i] = log(prob)
+}
+logloss = -sum(probs)/N
+logloss
 
 save.image()
 
