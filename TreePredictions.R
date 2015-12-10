@@ -23,18 +23,18 @@ data$year = as.factor(data$year)
 
 
 #small tests
-#set.seed(100)
-#trainobs = sample(seq(1, nrow(data)), 1000)
-#set.seed(107)
-#testobs = sample(seq(1, nrow(data)), 100)
+set.seed(100)
+trainobs = sample(seq(1, nrow(data)), 1000)
+set.seed(107)
+testobs = sample(seq(1, nrow(data)), 100)
 
 
 #large test
-set.seed(105)
-trainind = sample(seq(1,nrow(data)), floor(nrow(data)*(2/3)))
+#set.seed(105)
+#trainind = sample(seq(1,nrow(data)), floor(nrow(data)*(2/3)))
 
-train= data[trainind,]
-test = data[-trainind,]
+train= data[trainobs,]
+test = data[testobs,]
 t = ctree(Category~., data = train)
 
 save.image()
