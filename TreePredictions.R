@@ -21,18 +21,26 @@ data = data %>%
   filter(year >2005)
 data$year = as.factor(data$year)
 
-#Only include LARCENY/THEFT, NON-CRIMINAL, DRUG/NARCOTIC
-#These are the top three excluding OTHER. 
-#mark everything else as OTHER
+
+#save a copy of the data with all of the original categories
+origdata = data
+
+#Include all categories with more than 10,000 observations.
+#Make everything else OTHER
+
+include = c("LARCENY/THEFT", "NON-CRIMINAL", "ASSAULT", "DRUG/NARCOTIC", 
+            "VANDALISM", "WARRANTS", "VEHICLE THEFT", "BURGLARY", 
+            "SUSPICIOUS OCC", "MISSING PERSON", "ROBBERY", "FRAUD")
+
 levels(data$Category) = c(levels(data$Category), "OTHER")
-data$Category[!(data$Category %in% 
-    c("LARCENY/THEFT", "NON-CRIMINAL", "ASSAULT"))] = "OTHER"
+data$Category[!(data$Category %in% include)] = "OTHER"
 data$Category = droplevels(data$Category)
 
 
 #train and test
 set.seed(100)
-trainind = sample(seq(1:nrow(data)), 50000)
+trainsize = 1000
+trainind = sample(seq(1:nrow(data)), trainsize)
 
 train= data[trainind,]
 test = data[-trainind,]
@@ -46,6 +54,9 @@ totalTime
 
 plot(t)
 
+###### Calculations on test data with condenses # of categories
+
+
 #predict
 pred = predict(t, test)
 tab = table(pred, test$Category)
@@ -53,7 +64,7 @@ error = (nrow(test) - sum(diag(tab)))/nrow(test)
 error
 
 
-#calculate logloss
+#calculate logloss 
 probpred = predict(t, test, type="prob")
 N = nrow(test)
 probs = rep(1,N)
@@ -66,5 +77,37 @@ for (i in seq(1,N)){
 logloss = -sum(probs)/N
 logloss
 
-save.image()
+filename = paste(trainsize, ".RData", sep="")
+save.image(file=filename)
+
+
+
+####### Calculations on test data with original categies
+
+origtest = origdata[-trainind, ]
+origpred = predict(t, origtest)
+levels(origpred) = levels(origtest$Category)
+origtab = table(origpred, origtest$Category)
+origerror = (nrow(origtest) - sum(diag(origtab)))/nrow(origtest)
+origerror
+
+probpred = predict(t, origtest, type="prob")
+N = nrow(origtest)
+probs = rep(1,N)
+for (i in seq(1,N)){
+  class = origtest$Category[i]
+  if (class %in% include){
+    print(class)
+    prob = probpred[i, class]
+  }
+  else{
+    prob = 0
+  }
+  prob = max(min(prob,1-10^(-15)), 10^(-15))
+  probs[i] = log(prob)
+}
+origlogloss = -sum(probs)/N
+origlogloss
+
+
 
