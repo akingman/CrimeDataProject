@@ -39,7 +39,7 @@ data$Category = droplevels(data$Category)
 
 #train and test
 set.seed(100)
-trainsize = 1000
+trainsize = 50000
 trainind = sample(seq(1:nrow(data)), trainsize)
 
 train= data[trainind,]
@@ -77,27 +77,30 @@ for (i in seq(1,N)){
 logloss = -sum(probs)/N
 logloss
 
-filename = paste(trainsize, ".RData", sep="")
-save.image(file=filename)
+
 
 
 
 ####### Calculations on test data with original categies
-
+#error
 origtest = origdata[-trainind, ]
+levels(origtest$Category) = c(levels(origtest$Category), "OTHER")
+origtest$Category[origtest$Category == "OTHER OFFENSES"] =  "OTHER"
+origtest= droplevels(origtest)
 origpred = predict(t, origtest)
 levels(origpred) = levels(origtest$Category)
 origtab = table(origpred, origtest$Category)
 origerror = (nrow(origtest) - sum(diag(origtab)))/nrow(origtest)
 origerror
 
+#logloss
 probpred = predict(t, origtest, type="prob")
 N = nrow(origtest)
 probs = rep(1,N)
 for (i in seq(1,N)){
   class = origtest$Category[i]
+  class = droplevels(class)
   if (class %in% include){
-    print(class)
     prob = probpred[i, class]
   }
   else{
@@ -108,6 +111,12 @@ for (i in seq(1,N)){
 }
 origlogloss = -sum(probs)/N
 origlogloss
+
+
+
+### Save
+filename = paste(trainsize, "_13cats.RData", sep="")
+save.image(file=filename)
 
 
 
