@@ -48,6 +48,8 @@ This dataset contains incidents derived from the San Francisco Police Department
 
 Some initial exploratory charts show that district and location seem to have a relationship with crime frequency and category, which aligns with what we would expect from this type of data.
 
+\begin{center}
+
 \includegraphics{district-by-cat.png}
 
 \includegraphics{district-hist.png}
@@ -55,6 +57,8 @@ Some initial exploratory charts show that district and location seem to have a r
 \includegraphics{latitude.png}
 
 \includegraphics{longitude.png}
+
+\end{center}
 
 A plot of the trends in different crime categories over the last decade reveals nothing particularly troubling other than an sudden drop in vehicle thefts, which was investigated and explained here by another Kaggle user: \url{https://www.kaggle.com/eyecjay/sf-crime/vehicle-thefts-or-jerry-rice-jubilation}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.10.24)  14 DEC 2015 21:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.10.24)  15 DEC 2015 09:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -402,7 +402,11 @@ Overfull \hbox (3.61198pt too wide) in paragraph at lines 35--36
 nges from 1/1/2003
  []
 
+[1
+
+{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Try loading font information for TS1+aer on input line 39.
+
 (/usr/share/R/texmf/tex/latex/ts1aer.fd
 File: ts1aer.fd 
 )
@@ -414,37 +418,71 @@ Overfull \hbox (1.65086pt too wide) in paragraph at lines 41--42
 ime in-ci-dent (train-
  []
 
-[1
+<district-by-cat.png, id=17, 1898.09125pt x 1701.35625pt>
+File: district-by-cat.png Graphic file (type png)
 
-{/usr/share/texlive/texmf-dist/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+aett on input line 54.
+<use district-by-cat.png>
+Package pdftex.def Info: district-by-cat.png used on input line 54.
+(pdftex.def)             Requested size: 288.0011pt x 258.15193pt.
+
+<district-hist.png, id=19, 2341.74875pt x 1701.35625pt> [2]
+File: district-hist.png Graphic file (type png)
+
+<use district-hist.png>
+Package pdftex.def Info: district-hist.png used on input line 56.
+(pdftex.def)             Requested size: 288.0011pt x 209.24222pt.
+ <latitude.png, id=25, 1898.09125pt x 1701.35625pt>
+File: latitude.png Graphic file (type png)
+
+<use latitude.png>
+Package pdftex.def Info: latitude.png used on input line 58.
+(pdftex.def)             Requested size: 288.0011pt x 258.15193pt.
+ <longitude.png, id=26, 1898.09125pt x 1701.35625pt> [3 <./district-by-cat.png>
+ <./district-hist.png>]
+File: longitude.png Graphic file (type png)
+ <use longitude.png>
+Package pdftex.def Info: longitude.png used on input line 60.
+(pdftex.def)             Requested size: 288.0011pt x 258.15193pt.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 64.
 
 (/usr/share/texlive/texmf-dist/tex/latex/ae/t1aett.fd
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
-) [2]
+)
+Overfull \hbox (96.28444pt too wide) in paragraph at lines 64--65
+[]$\T1/aett/m/n/10.95 https : / / www . kaggle . com / eyecjay / sf-[]crime / v
+ehicle-[]thefts-[]or-[]jerry-[]rice-[]jubilation$[] 
+ []
+
+[4 <./latitude.png> <./longitude.png>]
+<categories.png, id=40, 2341.74875pt x 1701.35625pt>
+File: categories.png Graphic file (type png)
+ <use categories.png>
+Package pdftex.def Info: categories.png used on input line 66.
+(pdftex.def)             Requested size: 288.0011pt x 209.24222pt.
+
+[5 <./categories.png>]
 Missing character: There is no â in font cmr10!
 Missing character: There is no € in font cmr10!
 Missing character: There is no ™ in font cmr10!
- [3] [4] [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 171.
- [6]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 171.
-
-(./CrimeDataPaper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 171.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 171.
+ [6] [7] [8]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 189.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 189.
+ (./CrimeDataPaper.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 189.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 189.
 Package rerunfilecheck Info: File `CrimeDataPaper.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 171.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 189.
  ) 
 Here is how much of TeX's memory you used:
- 6647 strings out of 495025
- 97104 string characters out of 6181514
+ 6676 strings out of 495025
+ 97596 string characters out of 6181514
  169654 words of memory out of 5000000
- 9734 multiletter control sequences out of 15000+600000
+ 9754 multiletter control sequences out of 15000+600000
  24591 words of font info for 65 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 35i,6n,26p,1262b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 35i,6n,26p,1262b,473s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
@@ -457,10 +495,10 @@ amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmsltt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on CrimeDataPaper.pdf (6 pages, 148556 bytes).
+Output written on CrimeDataPaper.pdf (9 pages, 974011 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
- 18 named destinations out of 1000 (max. 500000)
- 5 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 126 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
+ 21 named destinations out of 1000 (max. 500000)
+ 30 words of extra memory for PDF output out of 10000 (max. 10000000)
 
