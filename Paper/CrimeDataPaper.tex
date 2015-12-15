@@ -12,7 +12,7 @@
 
 
 
-\title{Crime In San Fransisco}
+\title{San Fransisco Crime Classification}
 \author{Alison Kingman, James LaManana, Lizzie Kumar}
 \date{12/15/2015}
 
@@ -56,103 +56,7 @@ To visualize the data we created a few static charts, as well as a shiny applica
 
 The goal of this analysis is to predict the type of crime given a location and time. This shiny app is a nice visualization of the data because it shows the data based on those two criteria. There is a day and night setting as well as a slider for the year component, and the data is plotted on a map of San Francisco, to display the geographic aspect of the data. 
 
-\begin{Schunk}
-\begin{Sinput}
-> library(shiny)
-> #ui
-> shinyUI(pageWithSidebar(
-+   headerPanel("San Francisco Crime"),
-+   sidebarPanel(
-+     sliderInput('time.year', 'Year of crime occurance', sep='', value=2009, min=2003, max=2015, step=1),
-+     checkboxGroupInput("category", "Type of Crime Committed",
-+                        c("Assault" = "ASSAULT",
-+                          "Non Criminal" = "NON-CRIMINAL",
-+                          "Drug" = "DRUG/NARCOTIC",
-+                          "Vehicle Theft" = "VEHICLE THEFT",
-+                          "Larceny" = "LARCENY/THEFT"), selected = c("Assault","Drug")),
-+     checkboxGroupInput("daynight", "Crime Committed During the Day or Night",
-+                        c("Day"="Day",
-+                          "Night" = "Night"), selected = c("Night"))
-+     
-+   ),
-+   mainPanel(
-+     
-+     plotOutput('newPlot'),
-+     plotOutput('newPlot2')
-+     
-+     
-+   )
-+ ))
-\end{Sinput}
-\end{Schunk}
 
-\begin{Schunk}
-\begin{Sinput}
-> library(shiny)
-> library(XML)
-> library(RCurl)
-> library(mosaic)
-> library(lubridate)
-> library(dplyr)
-> library(ggplot2)
-> library(ggmap)
-> #server.R
-> 
-> map<-get_map(location=c(top =37.82, bottom = 37.7, right = -122.35,left = -122.52),zoom=12,source="osm",color = 'bw')
-> crime.train <- read.csv("train.csv")
-> crime.train2<-crime.train %>% mutate(Time = ymd_hms(Dates)) %>% mutate(Year = year(Time)) %>% 
-+ mutate(DayNight = ifelse(hour(Time)>=18|hour(Time)<=6,"Night", "Day")) %>% mutate(char.category = as.character(Category))
-> counts <- summarise(group_by(crime.train2, Category), Counts=length(Category))
-> counts <- counts[order(-counts$Counts),]
-> top5 <- crime.train2[crime.train2$Category %in% counts$Category[c(1,3:6)],]
-> shinyServer(
-+   function(input,output){
-+     output$otime.year = renderPrint({input$time.year})
-+     output$ocategory = renderPrint({input$category})
-+     output$odate = renderPrint({input$date})
-+     output$odaynight = renderPrint({input$daynight})
-+     
-+     #data for map plot
-+     dataInput <- reactive({
-+       top5[(top5$Year %in% input$time.year 
-+             & top5$DayNight %in% input$daynight 
-+             & top5$Category %in% input$category),]
-+     })
-+     
-+     #plotting map
-+     output$newPlot = renderPlot({
-+       ggmap(map) +
-+         geom_point(data=dataInput(), aes(x=X, y=Y, color=as.factor(Category)), alpha=.1) +
-+         guides(color = guide_legend(override.aes = list(alpha=1.0, size=6.0),
-+                                     title="Type of Crime"))
-+     })
-+     
-+     #Data for Bar Chart
-+     dataInput2 <- reactive({
-+       crime.train2[(crime.train2$Year %in% input$time.year 
-+                     & crime.train2$DayNight %in% input$daynight 
-+                     & crime.train2$Category %in% input$category),]
-+     })
-+     
-+     #get number of counts and add percentage
-+     counts <- reactive({
-+       dataInput2() %>% group_by(Category) %>% 
-+         summarise(Counts = length(Category)) %>% 
-+         mutate(percentage = Counts/nrow(crime.train2[(crime.train2$Year %in% input$time.year 
-+                                                       & crime.train2$DayNight %in% input$daynight),])) 
-+     })
-+     
-+     
-+     #plot bar chart
-+     output$newPlot2 = renderPlot({
-+       ggplot(counts())+
-+         geom_bar(stat = 'identity',aes( x = Category, y = percentage, fill = Category))
-+     })
-+     
-+   }
-+ )
-\end{Sinput}
-\end{Schunk}
 
 \section*{Method}
 

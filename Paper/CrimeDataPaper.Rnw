@@ -12,7 +12,7 @@
 
 
 
-\title{Crime In San Fransisco}
+\title{San Fransisco Crime Classification}
 \author{Alison Kingman, James LaManana, Lizzie Kumar}
 \date{12/15/2015}
 
@@ -55,7 +55,7 @@ To visualize the data we created a few static charts, as well as a shiny applica
 
 The goal of this analysis is to predict the type of crime given a location and time. This shiny app is a nice visualization of the data because it shows the data based on those two criteria. There is a day and night setting as well as a slider for the year component, and the data is plotted on a map of San Francisco, to display the geographic aspect of the data. 
 
-<<eval=FALSE>>=
+<<eval=FALSE, echo=FALSE>>=
 library(shiny)
 #ui
 shinyUI(pageWithSidebar(
@@ -83,7 +83,7 @@ shinyUI(pageWithSidebar(
 ))
 @
 
-<<eval=FALSE>>=
+<<eval=FALSE, echo=FALSE>>=
 library(shiny)
 library(XML)
 library(RCurl)
