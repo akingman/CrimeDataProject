@@ -27,7 +27,7 @@ For our final project we entered a Kaggle data science competition on San Franci
  
 \section*{Importance}
 
- 
+ Predictive policing is a term referring to mathematical methods and data analysis tools developed in the last few years to help law enforcement identify potential criminal activity. This can help police take preventative measures against potential crime or simply decide where to direct their resources. Using these methods has been shown to help police departments save time and money and even cut down crime rates. However, there are serious dangers that come with using historical data for a predictive analysis of crimes. If certain communities in San Francisco are already being overpoliced, the data in its current format will only reflect more crimes in that area. The modeling and exploration we do in this project may be able to give us some information about crime in the city of San Francisco, but we need to be careful about the conclusions we draw from it.
 
 \section*{The Data}
 
@@ -46,11 +46,25 @@ This dataset contains incidents derived from the San Francisco Police Department
 \item Y - Latitude
 \end{itemize}
 
+Some initial exploratory charts show that district and location seem to have a relationship with crime frequency and category, which aligns with what we would expect from this type of data.
 
+\includegraphics{district-by-cat.png}
+
+\includegraphics{district-hist.png}
+
+\includegraphics{latitude.png}
+
+\includegraphics{longitude.png}
+
+A plot of the trends in different crime categories over the last decade reveals nothing particularly troubling other than an sudden drop in vehicle thefts, which was investigated and explained here by another Kaggle user: \url{https://www.kaggle.com/eyecjay/sf-crime/vehicle-thefts-or-jerry-rice-jubilation}
+
+\includegraphics{categories.png}
+
+We were lucky in that our data did not seem to require any wrangling or cleaning to get into a form that we could study and predict.
 
 \section*{Visualization}
 
-To visualize the data we created a few static charts, as well as a shiny application. The shiny application plots the locations of the top 5 most frequent crimes on a map of San Francisco. In addition, the application has a slider to select a specific year from the data set, and two checkbox groups: one to select the specific type of crime out pf the top five to be displayed and the other is a setting to look at crimes that happened either during the day or night. In addition to the geographic plot of the crime, the Shiny app also includes a bar chart that responds to the same inputs as before but displays the relative frequency of the crimes selected. This bar chart aims to make it easier to compare the amount of occurrences of the types of crimes currently plotted on the map. The visualization can be found via the following url \url{http://rstudio.campus.pomona.edu:3838/jrl31925/CrimeShiny/}
+To visualize the data we created a shiny application that plots the locations of the top 5 most frequent crimes on a map of San Francisco. In addition, the application has a slider to select a specific year from the data set, and two checkbox groups: one to select the specific type of crime out pf the top five to be displayed and the other is a setting to look at crimes that happened either during the day or night. In addition to the geographic plot of the crime, the Shiny app also includes a bar chart that responds to the same inputs as before but displays the relative frequency of the crimes selected. This bar chart aims to make it easier to compare the amount of occurrences of the types of crimes currently plotted on the map. The visualization can be found via the following url \url{http://rstudio.campus.pomona.edu:3838/jrl31925/CrimeShiny/}
  
 
 The goal of this analysis is to predict the type of crime given a location and time. This shiny app is a nice visualization of the data because it shows the data based on those two criteria. There is a day and night setting as well as a slider for the year component, and the data is plotted on a map of San Francisco, to display the geographic aspect of the data. 
